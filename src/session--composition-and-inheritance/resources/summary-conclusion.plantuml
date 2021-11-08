@@ -1,4 +1,7 @@
 @startmindmap
+
+skinparam BackGroundColor #00000000
+
 <style>
 mindmapDiagram {
     node {
@@ -22,9 +25,9 @@ mindmapDiagram {
 **** Polymorphism
 *** Summary
 *** Issues
-** Composition <<current>>
+** Composition
 *** Principles
 *** Summary
 *** Issues
-** Conclusion
+** Conclusion <<current>>
 @endmindmap
