@@ -35,7 +35,7 @@ repository:
     allow_squash_merge: false
     default_branch: master
     description: "Session"
-    topics:
+    topics: session
     has_downloads: true
     has_issues: true
     has_pages: false

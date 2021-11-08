@@ -30,30 +30,6 @@
     \end{itemize}
 \end{frame}
 
-\begin{frame}
-    \frametitle{Object-oriented programming with composition}
-    \framesubtitle{Real life example}
-
-    \begin{center}
-        \includegraphics[width=\textwidth]{src/session--composition-and-inheritance/resources/Composition-Stove.png}
-    \end{center}
-\end{frame}
-
-\begin{frame}[fragile,c]
-    \begin{lstlisting}
-        <?php
-
-        $egg = new Egg;
-        $milk = new Milk;
-        $pepper = new Pepper;
-        $salt = new Salt;
-
-        $stove = new Stove($egg, $milk, $pepper, $salt);
-
-        $stove->makeOmelette();
-        \end{lstlisting}
-\end{frame}
-
 \begin{frame}[fragile,c]
     \begin{lstlisting}
 <?php
