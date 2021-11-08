@@ -2,6 +2,8 @@
 
 Object-oriented programming leveled up!
 
+Download the [latest release][4].
+
 ## About
 
 Object-oriented programming and its principles help you to organise your code and to design the logic of applications.
@@ -43,3 +45,4 @@ make docker-build
 [1]: https://github.com/loophp/DockLatex/
 [2]: https://www.latex-project.org/
 [3]: https://www.docker.com/
+[4]: https://github.com/ecphp/session--composition-and-inheritance/releases/latest
