@@ -29,7 +29,44 @@
     \end{itemize}
 \end{frame}
 
-% insert example of Ileana here
+\begin{frame}[fragile,c]
+    \makebox[\linewidth]{\includegraphics[width=\paperwidth]{src/session--composition-and-inheritance/screenshots/Screenshot_20211108_165811.png}}
+\end{frame}
+
+\begin{frame}[fragile,c]
+    \begin{lstlisting}
+<?php
+
+final class AppGuardAuthenticator extends AbstractGuardAuthenticator
+{
+    public function __construct(
+        private EuLoginApiAuthenticationGuardAuthenticator $decorated,
+        private LoggerInterface $logger
+    ) {}
+
+    public function getCredentials(Request $request): array
+    {
+        $this->logger->info(
+            sprintf(
+                '[GUARD][GET CREDENTIALS][EU LOGIN TOKEN] %s',
+                $request->headers->get('Authorization')
+            )
+        );
+
+        return $this->decorated->getCredentials($request);
+    }
+
+    public function checkCredentials($credentials, UserInterface $user): bool
+    {
+        return $this->decorated->checkCredentials($credentials, $user);
+    }
+}
+    \end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile,c]
+    \makebox[\linewidth]{\includegraphics[width=\paperwidth]{src/session--composition-and-inheritance/screenshots/Screenshot_20211108_170213.png}}
+\end{frame}
 
 \begin{frame}
     \frametitle{Composition and inheritance}
