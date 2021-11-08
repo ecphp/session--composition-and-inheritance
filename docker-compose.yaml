@@ -20,6 +20,7 @@ services:
         volumes:
             - .:/data
         working_dir: /data
+        entrypoint: mogrify
 
     plantuml:
         image: miy4/plantuml
