@@ -1,0 +1,33 @@
+@startuml
+
+hide empty members
+skinparam BackgroundColor transparent
+skinparam linetype ortho
+
+class Stove {
+    - Ingredients list<Ingredient>
+    + makeFriedEgg()
+    + makeOmelette()
+    + makePopCorn()
+    + makeChickenCurry()
+}
+
+together {
+    interface Ingredient {}
+
+    class Egg implements Ingredient {}
+
+    class Milk implements Ingredient {}
+
+    class Pepper implements Ingredient {}
+
+    class Salt implements Ingredient {}
+
+    class Corn implements Ingredient {}
+
+    class Chicken implements Ingredient {}
+
+    class Curry implements Ingredient {}
+}
+
+@enduml

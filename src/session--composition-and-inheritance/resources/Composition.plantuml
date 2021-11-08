@@ -1,0 +1,21 @@
+@startuml
+
+hide empty members
+skinparam BackgroundColor transparent
+
+class User {
+    - name: string
+    - email: string
+    + getName(): string
+    + getEmail(): string
+}
+
+class OfficialUser {
+    + __construct(User $user)
+    - badgeId: int
+    + getBadgeId(): int
+}
+
+User --o OfficialUser
+
+@enduml

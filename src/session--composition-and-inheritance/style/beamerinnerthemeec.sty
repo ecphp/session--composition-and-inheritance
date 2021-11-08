@@ -1,0 +1,47 @@
+\mode<presentation>
+
+\setbeamertemplate{background}{
+    \ifnum\thepage=1\relax%
+      \begin{tikzpicture}
+        \useasboundingbox (0,0) rectangle(\the\paperwidth,\the\paperheight);
+        \fill[color=ecmainlight] (0,0) rectangle (13,8.39);
+        \fill[color=ecmain] (6,0) rectangle (7,0.3);
+        \fill[color=ecaccentyellow] (1,0) rectangle (1.05, 7);
+      \end{tikzpicture}
+      \begin{tikzpicture}[remember picture, overlay]
+        \node at (current page.north) {\includegraphics[trim=0 0 0 -7cm,scale=0.25]{src/session--composition-and-inheritance/style/logo/logo-ce-en}};
+      \end{tikzpicture}
+    \fi
+
+}
+
+% Title page
+\defbeamertemplate*{title page}{ec}[1][]
+{
+    \vskip2cm%
+
+    \begin{beamercolorbox}[wd=12cm,leftskip=1cm,sep=0pt,#1]{title page header}
+      \usebeamerfont{title}\inserttitle\par%
+    \end{beamercolorbox}%
+
+    \vskip0.5cm%
+
+    \begin{beamercolorbox}[wd=12cm,leftskip=1cm,sep=0pt,#1]{subtitle page header}
+      \usebeamerfont{title}\insertsubtitle\par%
+    \end{beamercolorbox}%
+
+    \vskip3cm%
+
+    \begin{beamercolorbox}[wd=12cm,leftskip=1cm,#1]{author}
+      \usebeamerfont{author}\hfill\insertauthor%
+    \end{beamercolorbox}
+
+    \vskip0.2cm%
+
+    \begin{beamercolorbox}[wd=12cm,leftskip=1cm,#1]{date}
+      \usebeamerfont{author}\hfill\insertdate%
+    \end{beamercolorbox}
+
+}
+
+\mode<all>

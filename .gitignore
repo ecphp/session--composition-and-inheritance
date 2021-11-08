@@ -1,0 +1,7 @@
+/build/
+/bin/
+/.vscode/
+*.bak*
+indent.log
+/node_modules/
+package-lock.json

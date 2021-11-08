@@ -1,0 +1,20 @@
+@startuml
+
+hide empty members
+skinparam BackgroundColor transparent
+
+class User {
+    - name: string
+    - email: string
+    + getName(): string
+    + getEmail(): string
+}
+
+class OfficialUser extends User {
+    - badgeId: int
+    + getName(): string
+    + getEmail(): string
+    + getBadgeId(): int
+}
+
+@enduml

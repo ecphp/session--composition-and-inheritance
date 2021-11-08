@@ -1,0 +1,48 @@
+@startuml
+
+hide empty members
+skinparam BackgroundColor transparent
+skinparam linetype ortho
+
+interface Pizza {
+    + getIngredients(): array
+}
+
+CustomPizza --o Margherita
+Margherita --o Siciliana
+Siciliana --o Regina
+Siciliana --o Parmigiana
+Regina --o Napoli
+Parmigiana --o Napoli
+
+class CustomPizza implements Pizza {
+    - $ingredients list<Ingredient>
+}
+
+class Margherita implements Pizza {
+    - Pizza $pizza
+}
+
+class Siciliana implements Pizza {
+    - Margherita $margherita
+    - Ingredient $mushroom
+}
+
+class Regina implements Pizza {
+    - Siciliana $siciliana
+    - Ingredient $ham
+}
+
+class Parmigiana implements Pizza {
+    - Siciliana $siciliana
+    - Ingredient $aubergine
+}
+
+class Napoli implements Pizza {
+    - Regina $regina
+    - Parmigiana $parmigiana
+    - Ingredient $artichoke
+}
+
+
+@enduml
