@@ -20,6 +20,8 @@
     \end{itemize}
 \end{frame}
 
+% Add slide here explaining what Composition is.
+
 \begin{frame}
     \frametitle{Object-oriented programming with composition}
     \framesubtitle{The good things}
@@ -154,6 +156,29 @@ final class Napoli implements Pizza
 \end{frame}
 
 \begin{frame}[fragile,c]
+    \begin{lstlisting}
+<?php
+
+$tomato = new Tomato;
+$cheese = new Cheese;
+$mushroom = new Mushroom;
+$ham = new Ham;
+$aubergine = new Aubergine;
+$artichoke = new Artichoke;
+
+$marguerita = new Margherita($tomato, $cheese);
+
+$siciliana = new Siciliana($tomato, $cheese, $muschroom);
+
+$regina = new Regina($tomato, $cheese, $mushroom, $ham);
+
+$parmigiana = new Parmigiana($tomato, $cheese, $mushroom, $aubergine);
+
+$napoli = new Napoli($tomato, $cheese, $mushroom, $ham, $aubergine, $artichoke);
+    \end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile,c]
     \begin{center}
         \includegraphics[height=\textheight]{src/session--composition-and-inheritance/resources/summary-composition-pizza.png}
     \end{center}
@@ -178,7 +203,7 @@ interface Pizza {
 final class CustomPizza implements Pizza
 {
     public function __construct(
-        Ingredient ...$ingredients
+        private Ingredient ...$ingredients
     ) {}
 
     public function getIngredients(): array
@@ -204,10 +229,6 @@ final class Margherita implements Pizza
         return $this->customPizza->getIngredients();
     }
 }
-
-$margherita = new Margherita(
-    new CustomPizza($tomato, $cheese)
-);
     \end{lstlisting}
 \end{frame}
 
@@ -227,8 +248,6 @@ final class Siciliana implements Pizza
         return [...$this->margherita->getIngredients(), $this->mushroom];
     }
 }
-
-$siciliana = new Siciliana($margherita, $muschroom);
     \end{lstlisting}
 \end{frame}
 
@@ -248,8 +267,6 @@ final class Regina implements Pizza
         return [...$this->siciliana->getIngredients(), $this->ham];
     }
 }
-
-$regina = new Regina($siciliana, $ham);
     \end{lstlisting}
 \end{frame}
 
@@ -269,8 +286,6 @@ final class Parmigiana implements Pizza
         return [...$this->siciliana->getIngredients(), $this->aubergine];
     }
 }
-
-$parmigiana = new Parmigiana($siciliana, $aubergine);
     \end{lstlisting}
 \end{frame}
 
@@ -295,8 +310,6 @@ final class Napoli implements Pizza
         ];
     }
 }
-
-$napoli = new Napoli($regina, $parmigiana, $artichoke);
     \end{lstlisting}
 \end{frame}
 
@@ -312,14 +325,39 @@ var_dump($margherita instanceof $napoli);     // false
     \end{lstlisting}
 \end{frame}
 
+\begin{frame}[fragile,c]
+    \begin{lstlisting}
+<?php
+
+$tomato = new Tomato;
+$cheese = new Cheese;
+$mushroom = new Mushroom;
+$ham = new Ham;
+$aubergine = new Aubergine;
+$artichoke = new Artichoke;
+
+$basePizze = new CustomPizza($tomato, $cheese);
+
+$margherita = new Margherita($basePizza);
+
+$siciliana = new Siciliana($margherita, $muschroom);
+
+$regina = new Regina($siciliana, $ham);
+
+$parmigiana = new Parmigiana($siciliana, $aubergine);
+
+$napoli = new Napoli($regina, $parmigiana, $artichoke);
+    \end{lstlisting}
+\end{frame}
+
+
 \begin{frame}
     \frametitle{Object-oriented programming with composition}
     \framesubtitle{Real life example}
 
     \begin{itemize}[<+->]
         \item Each dependency is created,
-        \item Each dependency is injected.
-        \item \textit{Yes, just like when you make a real omelette!}
+        \item Each dependency is injected when it's needed.
     \end{itemize}
 \end{frame}
 
