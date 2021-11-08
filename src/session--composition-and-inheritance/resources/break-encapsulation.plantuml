@@ -1,0 +1,19 @@
+@startuml
+
+hide empty members
+skinparam BackgroundColor transparent
+
+class FooParentController {
+    + methodA()
+    + methodB()
+    + methodC()
+    + methodD()
+    + methodE()
+    + methodF()
+}
+
+class BarChildController extends FooParentController {
+    + methodG()
+}
+
+@enduml

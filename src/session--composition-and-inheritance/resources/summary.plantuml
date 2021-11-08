@@ -1,0 +1,32 @@
+@startmindmap
+
+skinparam BackGroundColor #00000000
+
+<style>
+mindmapDiagram {
+    node {
+        BackgroundColor #4bc5de
+        LineColor #1687a6
+    }
+    .current {
+      BackGroundColor #ffc000
+    }
+    arrow {
+      LineColor #1687a6
+    }
+}
+</style>
+* Introduction <<current>>
+** Object-oriented programming
+*** Principles
+**** Encapsulation
+**** Abstraction
+**** Inheritance
+**** Polymorphism
+*** Summary
+*** Issues
+** Composition
+*** Principles
+*** Summary
+*** Issues
+@endmindmap

@@ -1,0 +1,36 @@
+@startuml
+
+hide empty members
+skinparam BackgroundColor transparent
+
+interface Pizza {
+    + getIngredients(): array
+}
+
+class CustomPizza implements Pizza {
+    - $ingredients list<Ingredient>
+}
+
+class Margherita extends CustomPizza {
+    - Ingredient $cheese
+    - Ingredient $tomato
+}
+
+class Siciliana extends Margherita {
+    - Ingredient $mushroom
+}
+
+class Regina extends Siciliana {
+    - Ingredient $ham
+}
+
+class Parmigiana extends Siciliana {
+    - Ingredient $aubergine
+}
+
+class Napoli extends Regina {
+    - Ingredient $artichoke
+    - Ingredient $aubergine
+}
+
+@enduml

@@ -1,0 +1,35 @@
+@startuml
+
+hide empty members
+skinparam BackgroundColor transparent
+skinparam linetype ortho
+
+class Margherita implements Pizza {
+    - Ingredient $cheese
+    - Ingredient $tomato
+}
+
+class Siciliana implements Pizza {
+    - Ingredient $ham
+    - Ingredient $mushroom
+}
+
+class Regina implements Pizza {
+    - Pizza $siciliana
+    - Pizza $margherita
+}
+
+class Napoli implements Pizza {
+    - Pizza $regina
+    - Ingredient $artichoke
+}
+
+interface Pizza {
+    + make(): void
+}
+
+Siciliana --o Regina
+Margherita --o Regina
+Regina --o Napoli
+
+@enduml

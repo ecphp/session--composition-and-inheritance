@@ -1,0 +1,30 @@
+@startuml
+
+hide empty members
+skinparam backgroundcolor transparent
+skinparam linetype ortho
+
+interface Logger {
+    + log(string msg): void
+}
+
+class FilesystemLogger implements Logger {
+    + log(string msg): void
+}
+
+class MicrosoftLogger implements Logger {
+    + __construct(Logger logger)
+    + log(string msg): void
+}
+
+class LinuxLogger implements Logger {
+    + log(string msg): void
+}
+
+class DatabaseLogger implements Logger {
+    + log(string msg): void
+}
+
+FilesystemLogger --o MicrosoftLogger
+
+@enduml
