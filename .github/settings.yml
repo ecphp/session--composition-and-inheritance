@@ -36,6 +36,7 @@ repository:
     default_branch: master
     description: "Session"
     topics: session
+    homepage: https://github.com/ecphp/session--composition-and-inheritance/releases/latest
     has_downloads: true
     has_issues: true
     has_pages: false
