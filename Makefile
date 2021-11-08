@@ -23,19 +23,18 @@ LATEXMK_COMMAND = $(TEXLIVE_RUN) latexmk $(LATEXMK_ARGS)
 # Make does not offer a recursive wildcard function, so here's one:
 rwildcard=$(wildcard $1$2) $(foreach d,$(wildcard $1*),$(call rwildcard,$d/,$2))
 
-.PHONY: build view
+.PHONY: docker-build view
 
-session--composition-and-inheritance : build
-
-%:
-	$(MAKE) build INPUT=src/$@/index.tex
-	$(MAKE) asset
+default :
+	$(info Please select a target)
 
 build :
+	$(MAKE) asset
 	$(LATEXMK_COMMAND) -jobname=$(OUTPUT) $(INPUT)
 	$(MAKE) chmodbuild
 
 docker-build :
+	$(MAKE) docker-asset
 	$(DOCKER_LATEXMK_COMMAND) -jobname=$(OUTPUT) $(INPUT)
 	$(MAKE) chmodbuild
 
