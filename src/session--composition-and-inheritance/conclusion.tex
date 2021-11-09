@@ -13,9 +13,8 @@
     \framesubtitle{Conclusion / When to use composition?}
 
     \begin{itemize}[<+->]
-        \item Use it everywhere,
         \item As much as you want,
-        \item Prefer it to inheritance.
+        \item Use language constructions to enforce this pattern (interfaces, final keyword, $\cdots$).
     \end{itemize}
 \end{frame}
 
@@ -24,6 +23,7 @@
     \framesubtitle{Conclusion / Where to use it?}
 
     \begin{itemize}[<+->]
+        \item Anywhere,
         \item When customizing part of a framework's component,
         \item When building custom library.
     \end{itemize}
@@ -75,8 +75,8 @@ final class AppGuardAuthenticator extends AbstractGuardAuthenticator
     \begin{itemize}[<+->]
         \item Clearer code,
         \item Ease of testing,
-        \item Works well with S.O.L.I.D. principles,
-        \item Code instantly fails to run if an updated interface is not fulfilled.
+        \item Works well with \texttt{S.O.L.I.D.}\footnote{Could be a good candidate for the next session!} principles,
+        \item Code \textbf{does not} run if an interface has been updated upstream and is not fulfilled.
     \end{itemize}
 \end{frame}
 
@@ -86,6 +86,15 @@ final class AppGuardAuthenticator extends AbstractGuardAuthenticator
 
     \begin{itemize}[<+->]
         \item Code is more verbose,
-        \item $\cdots$
+        \item $\cdots$ (\textit{I'm still looking for them})
     \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Composition and inheritance}
+    \framesubtitle{Conclusion}
+
+    Now when someone says...\\~\\\pause
+    ``\textit{The class is final, It is not possible to extend it...''}\\~\\\pause
+    You know what to answer!
 \end{frame}
