@@ -34,6 +34,12 @@ jobs:
         id: version
         run: echo "::set-output name=version::$(git rev-parse --short HEAD)"
 
+      - name: Build assets environments
+        run: docker-compose -f docker-compose.ci.yml up -d
+
+      - name: Build assets
+        run: make docker-asset
+
       - name: Compile document
         uses: xu-cheng/latex-action@v2
         with:
