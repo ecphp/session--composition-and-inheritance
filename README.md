@@ -21,7 +21,7 @@ There is no prerequisite, maybe just some bravery and humour.
 
 ## Contribute
 
-This project is built using [DockLatex][1], a multi-platform open-source project facilitating the creation of [LaTeX][2] document based on [Docker][3].
+This project is built using [DockLatex][1], a multi-platform open-source project based on [Docker][3] facilitating the creation of [LaTeX][2] documents.
 
 ### To build locally
 
