@@ -43,4 +43,4 @@ repository:
     has_projects: false
     has_wiki: false
     name: session--composition-and-inheritance
-    private: true
+    private: false
