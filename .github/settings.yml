@@ -34,8 +34,8 @@ repository:
     allow_rebase_merge: false
     allow_squash_merge: false
     default_branch: master
-    description: "Session"
-    topics: Session "Composition and inheritance"
+    description: "Session 'Composition and inheritance'"
+    topics: session
     homepage: https://github.com/ecphp/session--composition-and-inheritance/releases/latest
     has_downloads: true
     has_issues: true
