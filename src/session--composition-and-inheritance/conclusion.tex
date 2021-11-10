@@ -90,21 +90,17 @@ final class AppGuardAuthenticator extends AbstractGuardAuthenticator
     \end{itemize}
 \end{frame}
 
+
 \begin{frame}
     \frametitle{Composition and inheritance}
     \framesubtitle{Conclusion / A few tips}
 
     \begin{itemize}[<+->]
-        \item
-        \item $\cdots$ (\textit{I'm still looking for them})
+        \item Avoid extending classes,
+        \item Avoid \texttt{abstract} classes,
+        \item Setting your classes as \texttt{final} should be the default construction pattern,
+        \item Create an \texttt{interface} for each of your services,
+        \item Prefer stateless services to stateful,
+        \item Read, understand and apply the \texttt{S.O.L.I.D.}\only<6->\footnote{\href{https://en.wikipedia.org/wiki/SOLID}{Wikipedia - SOLID}} principles.
     \end{itemize}
-\end{frame}
-
-\begin{frame}
-    \frametitle{Composition and inheritance}
-    \framesubtitle{Conclusion}
-
-    Now when someone says...\\~\\\pause
-    ``\textit{The class is final, It is not possible to extend it...''}\\~\\\pause
-    You know what to answer!
 \end{frame}
