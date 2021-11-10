@@ -79,17 +79,17 @@
     \framesubtitle{Encapsulation}
 
     \begin{itemize}
-        \item Protect the internal state of an object access to the class variables\pause
+        \item Protect the internal state of an object access to the class properties\pause
               \textcolor{ecgrey!50}{
-              \\Via the use of \texttt{getters} and \texttt{setters} methods}
+              \\Via the use of \texttt{getters} and \texttt{setters} methods}.
         \pause
         \item Reduce software development complexity\pause
               \textcolor{ecgrey!50}{
-              \\By hiding the implementation details and only exposing the operations, using a class becomes easy.}
+              \\By hiding the implementation details and only exposing the relevant operations.}
         \pause
-        \item The internal implementation of the class can be changed\pause
+        \item The internal implementation can be interchanged\pause
               \textcolor{ecgrey!50}{
-              \\Without worrying about breaking the code that uses the class}
+              \\Without worrying about breaking the code using the class.}
     \end{itemize}
 \end{frame}
 
@@ -229,7 +229,7 @@
 
     \begin{itemize}
         \item It is fundamental to OOP\pause
-              \\\textcolor{ecgrey!50}{A programming language may have objects and messages, but without inheritance it's not object-oriented (\textit{merely “object-based”, but still polymorphic}).}
+              \\\textcolor{ecgrey!50}{A programming language may have objects and messages, but without inheritance it's not object-oriented.}
         \pause
         \item Inheritance serves two purposes: semantics and mechanics.
         \pause
@@ -333,7 +333,7 @@ class English extends Person
 $dutch = new Dutch;
 $english = new English;
 
-var_dump($dutch instanceof Person); // true
+var_dump($dutch instanceof Person);   // true
 var_dump($english instanceof Person); // true
     \end{lstlisting}
 \end{frame}
@@ -391,7 +391,7 @@ class English implements Greatable
 $dutch = new Dutch;
 $english = new English;
 
-var_dump($dutch instanceof Greatable); // true
+var_dump($dutch instanceof Greatable);   // true
 var_dump($english instanceof Greatable); // true
     \end{lstlisting}
 \end{frame}
@@ -519,11 +519,11 @@ $greetings = array_map(
     \begin{itemize}
         \item Breaks encapsulation\pause
               \textcolor{ecgrey!50}{
-              \\Inheritance creates dependency between child and parent.\pause
-              \\When a class inherit another class, we include all methods and attributes from parent
-              class and expose to the child class, therefore we break the encapsulation.\pause
-              \\The child object can access all the methods in parent object and overwrite them.\pause
-              \\That creates a tightly coupled relation between child and parent class,
+              \\Inheritance creates dependency between child and parent.\\~\\\pause
+              When a class inherit another class, we include all methods and attributes from parent
+              class and expose to the child class, therefore we break the encapsulation.\\~\\\pause
+              The child object can access all the methods in parent object and overwrite them.\\~\\\pause
+              That creates a tightly coupled relation between child and parent class,
               also against the idea of OOP, which is to hide the complexity in the
               object and interact by interface.}
     \end{itemize}
@@ -558,7 +558,7 @@ $greetings = array_map(
         \pause
         \item \texttt{Is-a} relation\pause
               \textcolor{ecgrey!50}{
-              \\By extending a class, we also enforce an \texttt{is-a} relationship between
+              \\By extending a class, we enforce an \texttt{is-a} relationship between
               parent and child, which sometimes does not reflect the object’s real relationships.}
     \end{itemize}
 \end{frame}
