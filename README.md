@@ -1,23 +1,16 @@
 # Composition and Inheritance
 
-Object-oriented programming leveled up!
+Object-oriented programming levelled up!
 
 Download the [latest release][4].
 
 ## About
 
-Object-oriented programming and its principles help you to organise your code and to design the logic of applications.
+Object-oriented programming and its principles help you to organise your code and to design the logic of applications. Unfortunately, using those principles also forces you to make design choices which are not always optimal or natural. Inheritance is the most common of these principles. Despite providing flexibility, inheritance also has constraints and issues. Composition is an alternative to inheritance and fixes some of those issues.
+ 
+In this deep and low-level presentation, we explore the pros and cons of each approach. It contains PHP code examples and UML diagrams, but fear not, as we are using trivial examples.
 
-Unfortunately, using those principles also forces you to make design choices which are not always optimal or natural.
-
-Inheritance is the most common of these principles. Despite providing flexibility, inheritance also has constraints and issues.
-
-Composition is an alternative to inheritance and fixes some of those issues.
-
-In this deep and low-level presentation, we will explore the pros and cons of each approach.
-It will contain PHP code examples and UML diagrams, but fear not, as we are going to use trivial examples.
-
-There is no prerequisite, maybe just some bravery and humour.
+There is no prerequisite (not even PHP knowledge) to follow/read this presentation, maybe just some bravery and humour.
 
 ## Contribute
 
