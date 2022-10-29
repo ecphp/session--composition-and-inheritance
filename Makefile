@@ -29,20 +29,10 @@ rwildcard=$(wildcard $1$2) $(foreach d,$(wildcard $1*),$(call rwildcard,$d/,$2))
 	$(MAKE) build INPUT=src/$@/index.tex
 
 build :
-	$(MAKE) asset
 	$(MAKE) build-document
-	$(MAKE) chmodbuild
-
-docker-build :
-	$(MAKE) docker-asset
-	$(MAKE) docker-build-document
-	$(MAKE) chmodbuild
 
 build-document:
 	$(LATEXMK_COMMAND) -jobname=$(OUTPUT) $(INPUT)
-
-docker-build-document:
-	$(DOCKER_LATEXMK_COMMAND) -jobname=$(OUTPUT) $(INPUT)
 
 asset :
 	rm -rf src/session--composition-and-inheritance/resources/*.png
@@ -50,32 +40,14 @@ asset :
 	$(CONVERT_RUN) -background transparent -density 600 -format png src/session--composition-and-inheritance/resources/*.svg
 	rm -rf src/session--composition-and-inheritance/resources/*.svg
 
-docker-asset :
-	rm -rf src/session--composition-and-inheritance/resources/*.png
-	$(DOCKER_PLANTUML_RUN) -tsvg src/session--composition-and-inheritance/resources/*.plantuml
-	$(DOCKER_CONVERT_RUN) -background transparent -density 600 -format png src/session--composition-and-inheritance/resources/*.svg
-	rm -rf src/session--composition-and-inheritance/resources/*.svg
-
 pandoc :
 	$(PANDOC_RUN) -s $(INPUT) -o $(OUTPUT)
-
-docker-pandoc :
-	$(DOCKER_PANDOC_RUN) -s $(INPUT) -o $(OUTPUT)
-
-docker-convert :
-	$(DOCKER_CONVERT_RUN) -density 1200 $(INPUT) $(OUTPUT)
 
 latexindent :
 	$(TEXLIVE_RUN) latexindent
 
-docker-latexindent :
-	$(DOCKER_TEXLIVE_RUN) latexindent
-
 clean :
 	rm -rf build
-
-docker-clean :
-	$(DOCKER_TEXLIVE_RUN) rm -rf build
 
 lint :
 	$(foreach file, $(call rwildcard,$(shell dirname "$(INPUT)"),*.tex), $(TEXLIVE_RUN) lacheck $(file);)
@@ -87,10 +59,6 @@ chmodbuild:
 
 watch:
 	$(LATEXMK_COMMAND) -pvc -jobname=$(OUTPUT) $(INPUT)
-	$(MAKE) chmodbuild
-
-docker-watch:
-	$(DOCKER_LATEXMK_COMMAND) -pvc -jobname=$(OUTPUT) $(INPUT)
 	$(MAKE) chmodbuild
 
 fresh:

@@ -6,5 +6,4 @@
 indent.log
 /node_modules/
 package-lock.json
-/src/session--composition-and-inheritance/resources/*.png
 /src/session--composition-and-inheritance/resources/*.svg
