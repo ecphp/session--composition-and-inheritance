@@ -51,7 +51,7 @@
           configurePhase = ''
             runHook preConfigure
             substituteInPlace "src/session--composition-and-inheritance/version.tex" \
-              --replace "dev" "${version}"
+              --replace "dev-local" "${version}"
             runHook postConfigure
           '';
           installPhase = ''
