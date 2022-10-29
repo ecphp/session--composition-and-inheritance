@@ -25,8 +25,8 @@ rwildcard=$(wildcard $1$2) $(foreach d,$(wildcard $1*),$(call rwildcard,$d/,$2))
 
 .PHONY: docker-build build docker-build-document build-document
 
-default :
-	$(info Please select a target)
+%:
+	$(MAKE) build INPUT=src/$@/index.tex
 
 build :
 	$(MAKE) asset
