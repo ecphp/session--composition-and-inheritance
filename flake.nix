@@ -29,7 +29,7 @@
         };
 
         documentProperties = {
-          name = "nix-at-ec-presentation";
+          name = "ec-presentation";
           inputs = [
             tex
             pkgs.coreutils
@@ -56,7 +56,7 @@
           '';
           installPhase = ''
             runHook preInstall
-            cp build/nix-at-ec.pdf $out
+            cp build/session--composition-and-inheritance.pdf $out
             runHook postInstall
           '';
         };
