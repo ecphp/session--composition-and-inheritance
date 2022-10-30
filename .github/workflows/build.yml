@@ -84,6 +84,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ needs.release.outputs.upload_url }}
-          asset_path: assets/summer-of-nix.pdf
+          asset_path: assets/presentation.pdf
           asset_name: ${{ github.run_number }}--session--composition-and-inheritance--${{ needs.dependencies.outputs.version }}.pdf
           asset_content_type: application/pdf
