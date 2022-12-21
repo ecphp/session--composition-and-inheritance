@@ -37,13 +37,13 @@ jobs:
       - name: Build document
         run: |
           nix build . --impure --quiet
-          cp result/latex-presentation.pdf session--authentication-at-ec.pdf
+          cp result/latex-presentation.pdf .
 
       - name: Upload build assets
         uses: actions/upload-artifact@v3
         with:
           name: assets
-          path: session--authentication-at-ec.pdf
+          path: latex-presentation.pdf
 
   release:
     name: "Create tag/pre-release"
