@@ -15,21 +15,22 @@ There is no prerequisite (not even PHP knowledge) to follow/read this presentati
 ### To build locally
 
 ```shell
-make build
+nix build
+open result/latex-presentation.pdf
 ```
 
 ## References and sources
 
-- https://www.infoworld.com/article/3409071/java-challenger-7-debugging-java-inheritance.html
-- https://www.guru99.com/object-oriented-programming.html
-- https://en.wikipedia.org/wiki/Object-oriented_programming
-- https://www.php.net/manual/en/language.oop5.inheritance.php
-- https://www.phptutorial.net/php-oop/php-polymorphism/
-- https://blog.devgenius.io/code-smell-58-yo-yo-problem-1e092d3c69ff
-- https://www.phptutorial.net/php-oop/php-inheritance/
-- https://neethack.com/2017/04/Why-inheritance-is-bad/
-- https://www.indeed.com/career-advice/career-development/what-is-object-oriented-programming
-- https://www.thoughtworks.com/insights/blog/composition-vs-inheritance-how-choose
+-   https://www.infoworld.com/article/3409071/java-challenger-7-debugging-java-inheritance.html
+-   https://www.guru99.com/object-oriented-programming.html
+-   https://en.wikipedia.org/wiki/Object-oriented_programming
+-   https://www.php.net/manual/en/language.oop5.inheritance.php
+-   https://www.phptutorial.net/php-oop/php-polymorphism/
+-   https://blog.devgenius.io/code-smell-58-yo-yo-problem-1e092d3c69ff
+-   https://www.phptutorial.net/php-oop/php-inheritance/
+-   https://neethack.com/2017/04/Why-inheritance-is-bad/
+-   https://www.indeed.com/career-advice/career-development/what-is-object-oriented-programming
+-   https://www.thoughtworks.com/insights/blog/composition-vs-inheritance-how-choose
 
 [2]: https://www.latex-project.org/
 [4]: https://github.com/ecphp/session--composition-and-inheritance/releases/latest

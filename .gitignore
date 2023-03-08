@@ -1,4 +1,5 @@
 /.direnv/
+/result/
 /build/
 /bin/
 /.vscode/

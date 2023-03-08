@@ -15,9 +15,8 @@
 \usepackage{fontawesome5}
 \usepackage{hyperref}
 \usepackage[normalem]{ulem}
-\usepackage{fontspec}
 
-\IfFileExists{ecsquare.sty}{\usepackage{ecsquare}}{}
+\usetheme{ec}
 
 \definecolor{dkgreen}{rgb}{0,.5,0}
 \definecolor{dkblue}{rgb}{0,0,.6}
@@ -56,14 +55,18 @@
   morekeywords     = {new, true, false, catch, function, fn, return, null, catch, switch, if, while, do, else, elseif, case, break, instanceof, final, class, implements, static, public, protected, private, __construct, abstract, extends, parent, interface, void}
 }
 
+\setbeamersize{text margin left=5mm,text margin right=5mm}
+
+% This is to prevent frametitle numbering when using `allowframebreaks`.
+\setbeamertemplate{frametitle continuation}{}
+
 \title{Composition and inheritance}
 \subtitle{Object-oriented programming levelled up}
-\date[2021]{\texttt{November 2021}}
-\author[Pol]{\texttt{Pol Dellaiera} - \texttt{DIGIT B4} - \texttt{DIGIT PHP SUPPORT}}
+\institute{European Commission}
+\date[2021]{November 2021}
+\author[Pol]{Pol Dellaiera}
 
 \input{frames}
-
-\usetheme{ec}
 
 \newenvironment{itquote}
   {\begin{quote}\itshape}

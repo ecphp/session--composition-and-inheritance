@@ -1,96 +1,107 @@
 {
-  description = "LaTeX document European Commission";
+  description = "Session - Composition and Inheritance";
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
-    flake-utils.url = "github:numtide/flake-utils";
-    ec-theme.url = "git+https://code.europa.eu/pol/european-commission-latex-beamer-theme/";
+    theme-ec.url = "git+https://code.europa.eu/pol/european-commission-latex-beamer-theme/";
     ec-fonts.url = "git+https://code.europa.eu/pol/ec-fonts/";
     ci-detector.url = "github:loophp/ci-detector";
   };
 
-  outputs = { self, nixpkgs, flake-utils, ec-theme, ec-fonts, ci-detector, ... }@inputs:
-    with flake-utils.lib; eachSystem allSystems (system:
-      let
-        version = self.shortRev or self.lastModifiedDate;
+  outputs = inputs @ {flake-parts, ...}:
+    flake-parts.lib.mkFlake {inherit inputs;} {
+      systems = inputs.nixpkgs.lib.systems.flakeExposed;
 
-        pkgs = import nixpkgs {
-          overlays = [
-            ec-theme.overlays.default
-            ec-fonts.overlays.default
-          ];
+      perSystem = {
+        config,
+        self',
+        inputs',
+        pkgs,
+        system,
+        ...
+      }: let
+        pkgs = import inputs.nixpkgs {
+          overlays =
+            [
+              inputs.theme-ec.overlays.default
+            ]
+            ++ inputs.nixpkgs.lib.optional (inputs.ci-detector.lib.notInCI) inputs.ec-fonts.overlays.default;
+
           inherit system;
         };
 
         tex = pkgs.texlive.combine {
-            inherit (pkgs.texlive) scheme-full latex-bin latexmk;
+          inherit (pkgs.texlive) scheme-full latex-bin latexmk;
 
-            latex-theme-ec = {
-                pkgs = [ pkgs.latex-theme-ec pkgs.ec-square-sans-lualatex ];
-            };
-        };
-
-        tex-for-ci = pkgs.texlive.combine {
-            inherit (pkgs.texlive) scheme-full latex-bin latexmk;
-
-            latex-theme-ec = {
-                pkgs = [ pkgs.latex-theme-ec ];
-            };
-        };
-
-        latex-presentation = pkgs.stdenvNoCC.mkDerivation {
-          name = "ec-presentation-" + version;
-          src = pkgs.lib.cleanSource ./.;
-          buildInputs = [
-            pkgs.coreutils
-            pkgs.gnumake
-            pkgs.imagemagick
-            pkgs.plantuml
-          ];
-          buildPhase = ''
-            runHook preBuild
-            make build-latex-presentation
-            runHook postBuild
-          '';
-          configurePhase = ''
-            runHook preConfigure
-            substituteInPlace "src/session--composition-and-inheritance/version.tex" \
-              --replace "dev-local" "${version}"
-            runHook postConfigure
-          '';
-          installPhase = ''
-            runHook preInstall
-            install -m644 -D build/*.pdf --target $out/
-            runHook postInstall
-          '';
+          latex-theme-ec = {
+            pkgs = [pkgs.latex-theme-ec] ++ inputs.nixpkgs.lib.optional (inputs.ci-detector.lib.notInCI) pkgs.ec-square-sans-lualatex;
+          };
         };
 
         myaspell = pkgs.aspellWithDicts (d: [d.en d.en-science d.en-computers d.fr d.be]);
-      in
-      {
-        # Nix shell / nix build
-        packages.default = if ci-detector.lib.inCI then
-            (latex-presentation.overrideAttrs (oldAttrs: {
-                buildInputs = [ oldAttrs.buildInputs ] ++ [ tex-for-ci ];
-            }))
-        else
-            (latex-presentation.overrideAttrs (oldAttrs: {
-                buildInputs = [ oldAttrs.buildInputs ] ++ [ tex ];
-            }));
 
-        # Nix develop
+        session--composition-and-inheritance = pkgs.stdenvNoCC.mkDerivation {
+          name = "session--composition-and-inheritance";
+
+          src = inputs.self;
+
+          buildInputs = [tex pkgs.plantuml pkgs.imagemagick];
+
+          # TMPDIR is provided by latexmk, and lualatex needs HOME to be set
+          # for temporary files while building
+          HOME = "$TMPDIR";
+          TEXINPUTS = "$src/src//:";
+          LC_ALL = "C";
+
+          buildPhase = ''
+            runHook preBuild
+
+            rm -rf src/session--composition-and-inheritance/resources/*.png
+            rm -rf src/session--composition-and-inheritance/resources/*.svg
+            ${pkgs.plantuml}/bin/plantuml -tsvg src/session--composition-and-inheritance/resources/*.plantuml
+            ${pkgs.imagemagick}/bin/mogrify -background transparent -density 600 -format png src/session--composition-and-inheritance/resources/*.svg
+
+            ${tex}/bin/latexmk \
+                -pdflua \
+                -halt-on-error \
+                -MP \
+                -logfilewarninglist \
+                -shell-escape \
+                -interaction=nonstopmode \
+                -file-line-error \
+                -jobname=session--composition-and-inheritance \
+                src/session--composition-and-inheritance/index.tex
+
+            runHook postBuild
+          '';
+
+          installPhase = ''
+            runHook preInstall
+
+            install -m644 -D *.pdf --target $out/
+
+            runHook postInstall
+          '';
+        };
+      in {
+        # nix fmt
+        formatter = pkgs.alejandra;
+
+        # nix build
+        packages.default = session--composition-and-inheritance;
+
+        # nix develop
         devShells.default = pkgs.mkShellNoCC {
-          name = "ec-presentation-devshell";
+          name = "session--composition-and-inheritance--devshell";
           buildInputs = [
             tex
-            pkgs.gnumake
+            pkgs.plantuml
+            pkgs.imagemagick
             pkgs.nodePackages.cspell
             pkgs.nodePackages.prettier
             myaspell
-            pkgs.inotify-tools
-            pkgs.nixpkgs-fmt
-            pkgs.nixfmt
           ];
         };
-      });
+      };
+    };
 }
